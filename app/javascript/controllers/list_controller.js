@@ -8,6 +8,15 @@ export default class extends Controller {
   }
 
   createTaskSuccess() {
-    form.reset()
+    this.formTarget.reset();
+  }
+
+  createTaskError(element, name, error) {
+    alert(error)
+  }
+
+  beforeCreateTask(element) {
+    element.querySelectorAll('input').forEach((input => input.blur()));
+    element.classList.add("form-disabled");
   }
 }
