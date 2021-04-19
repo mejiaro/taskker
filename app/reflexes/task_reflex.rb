@@ -1,9 +1,16 @@
 class TaskReflex < StimulusReflex::Reflex
+  before_reflex :set_task
   def toggle
-    Task.find(element.dataset.id).update(completed_at: element.checked ? Time.zone.now : nil)
+    @task.update(completed_at: element.checked ? Time.zone.now : nil)
   end
 
   def destroy
-    Task.find(element.dataset.id).destroy
+    @task.destroy
+  end
+
+  private
+
+  def set_task
+    @task = Task.find(element.dataset.id)
   end
 end
